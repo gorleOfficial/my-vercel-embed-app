@@ -25,10 +25,6 @@ async function fetchFavorites() {
           'User-Agent': 'my-e621-embed-app (by your_email_or_username@example.com)'
         }
       });
-      
-      console.log(response);
-      console.log(page);
-      console.log("lol");
 
       if (!response.ok) {
         throw new Error(`Failed to fetch page ${page}: ${response.statusText}`);
