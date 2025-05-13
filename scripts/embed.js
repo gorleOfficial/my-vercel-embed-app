@@ -80,7 +80,7 @@ async function fetchFavorites() {
 
       img.addEventListener('mouseenter', () => {
         const cols = Array(imageUrls.length).fill('1fr');
-        cols[index] = '2fr';
+        cols[index] = '3fr';
         grid.style.gridTemplateColumns = cols.join(' ');
       });
 
