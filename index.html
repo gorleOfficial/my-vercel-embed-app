@@ -1,20 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Embed App</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles/embed.css" />
 </head>
 <body>
-  <h1>Embed Viewer</h1>
-  <p id="output"></p>
-
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const fav = params.get("fav") || "none";
-    const quality = params.get("quality") || "default";
-    const act = params.get("act") || "none";
-
-    document.getElementById("output").textContent =
-      `Favorite: ${fav}, Quality: ${quality}, Action: ${act}`;
-  </script>
+  <div class="image-grid">
+    <!-- These will be populated by JavaScript -->
+  </div>
+  <script type="module" src="/scripts/embed.js"></script>
 </body>
 </html>
