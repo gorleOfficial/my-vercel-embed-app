@@ -8,12 +8,11 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
   overflow: hidden;
-  grid-auto-rows: 1fr;
 }
 
 .image-display {
