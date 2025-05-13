@@ -7,21 +7,30 @@ const imageUrls = [
 
 const grid = document.querySelector('.image-grid');
 
-imageUrls.forEach(url => {
+// Pre-apply and read initial layout to force transition to preload
+grid.style.gridTemplateColumns = Array(imageUrls.length).fill('1fr').join(' ');
+// Trigger a reflow by reading layout
+grid.offsetHeight; // This forces the browser to apply styles
+
+imageUrls.forEach((url, index) => {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'image-wrapper';
+
   const img = document.createElement('img');
   img.src = url;
   img.className = 'image-display';
-  img.title = 'Click to expand';
-  img.addEventListener('click', () => {
-    // Toggle expanded class
-    const expanded = img.classList.contains('expanded');
-    document.querySelectorAll('.image-display').forEach(el => el.classList.remove('expanded'));
-    grid.classList.toggle('expanding', !expanded);
-    if (!expanded) {
-      img.classList.add('expanded');
-    } else {
-      grid.classList.remove('expanding');
-    }
+  img.title = 'Hover to expand';
+
+  img.addEventListener('mouseenter', () => {
+    const cols = Array(imageUrls.length).fill('1fr');
+    cols[index] = '2fr';
+    grid.style.gridTemplateColumns = cols.join(' ');
   });
-  grid.appendChild(img);
+
+  img.addEventListener('mouseleave', () => {
+    grid.style.gridTemplateColumns = Array(imageUrls.length).fill('1fr').join(' ');
+  });
+
+  wrapper.appendChild(img);
+  grid.appendChild(wrapper);
 });
