@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Embed App</title>
+</head>
+<body>
+  <h1>Embed Viewer</h1>
+  <p id="output"></p>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const fav = params.get("fav") || "none";
+    const quality = params.get("quality") || "default";
+    const act = params.get("act") || "none";
+
+    document.getElementById("output").textContent =
+      `Favorite: ${fav}, Quality: ${quality}, Action: ${act}`;
+  </script>
+</body>
+</html>
