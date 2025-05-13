@@ -25,12 +25,12 @@ body {
 }
 
 /* Highlighted image expands */
-.image-display.expanded {
+.image-display:hover {
   grid-column: span 2;
 }
 
 /* Optional: shrink others when one is expanded */
-.image-grid.expanding .image-display:not(.expanded) {
+.image-grid.expanding .image-display:not(:hover) {
   opacity: 0.7;
   transform: scale(0.95);
 }
