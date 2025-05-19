@@ -1,10 +1,10 @@
 const params = new URLSearchParams(window.location.search);
 const fav = params.get("fav") || "gorleofficial";
 const quality = params.get("quality") || "sample";
+const maxPages = params.get("pages") || 10;
 const grid = document.querySelector('.image-grid');
 
 let postsPerPage = 100;
-const maxPages = 26; // Estimate based on how many favorites you expect (e.g. 20 pages × 100 = 2000 posts)
 
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
