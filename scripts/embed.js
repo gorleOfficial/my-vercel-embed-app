@@ -20,7 +20,7 @@ async function fetchFavorites() {
     // You can increase this loop count to fetch more pages
     for (let i = 0; i < 3; i++) {
       const page = Math.floor(Math.random() * maxPages) + 1;
-      const response = await fetch('https://e621.net/posts/random.json?tags=fav:${fav}', {
+      const response = await fetch(`https://e621.net/posts.json?tags=fav:${fav}&limit=${postsPerPage}&page=${page}`, {
         headers: {
           'User-Agent': 'my-e621-embed-app (by your_email_or_username@example.com)'
         }
