@@ -17,6 +17,7 @@ function shuffleArray(array) {
 
 async function fetchFavorites() {
   let allPosts = [];
+  const maxPages = rows * columns;
 
   try {
     // You can increase this loop count to fetch more pages

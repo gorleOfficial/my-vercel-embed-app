@@ -51,35 +51,44 @@ async function fetchFavorites() {
         }
 
         // enforce grid layout
-        grid.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
-        grid.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
+        while (imageUrls.length < totalImages && i < allPosts.length) {
+            const post = allPosts[i];
+            const file = post[quality] || post.sample || post.file;
+            if (file?.url) {
+                imageUrls.push({ url: file.url, id: post.id });
+            }
+            i++;
+        }
+
+        grid.style.gridTemplateColumns = Array(imageUrls.length).fill('1fr').join(' ');
+        grid.offsetHeight;
 
         imageUrls.forEach((imgData, index) => {
-            const wrapper = document.createElement('div');
-            wrapper.className = 'image-wrapper';
+        const wrapper = document.createElement('div');
+        wrapper.className = 'image-wrapper';
 
-            const img = document.createElement('img');
-            img.src = imgData.url;
-            img.className = 'image-display';
-            img.title = `Click to open #${imgData.id} in a new tab`;
+        const img = document.createElement('img');
+        img.src = imgData.url;
+        img.className = 'image-display';
+        img.title = `Click to open #${imgData.id} in a new tab`;
 
-            img.addEventListener('click', () => {
-                window.open(`https://e621.net/posts/${imgData.id}`, '_blank');
-            });
-
-            img.addEventListener('mouseenter', () => {
-                const cols = Array(columns).fill('1fr');
-                cols[index % columns] = '3fr';
-                grid.style.gridTemplateColumns = cols.join(' ');
-            });
-
-            img.addEventListener('mouseleave', () => {
-                grid.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
-            });
-
-            wrapper.appendChild(img);
-            grid.appendChild(wrapper);
+        img.addEventListener('click', () => {
+            window.open(`https://e621.net/posts/${imgData.id}`, '_blank');
         });
+
+        img.addEventListener('mouseenter', () => {
+            const cols = Array(imageUrls.length).fill('1fr');
+            cols[index] = '3fr';
+            grid.style.gridTemplateColumns = cols.join(' ');
+        });
+
+        img.addEventListener('mouseleave', () => {
+            grid.style.gridTemplateColumns = Array(imageUrls.length).fill('1fr').join(' ');
+        });
+
+        wrapper.appendChild(img);
+        grid.appendChild(wrapper);
+    });
     } catch (err) {
         console.error("Error fetching data from e621:", err);
     }
