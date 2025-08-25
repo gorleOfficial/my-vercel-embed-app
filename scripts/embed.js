@@ -2,7 +2,7 @@ const params = new URLSearchParams(window.location.search);
 const fav = params.get("fav") || "gorleofficial";
 const quality = params.get("quality") || "sample";
 const rows = /**parseInt(params.get("rows")) || **/1;
-const columns = parseInt(params.get("columns")) || 8;
+const columns = parseInt(params.get("columns")) || 4;
 const grid = document.querySelector('.image-grid');
 
 async function fetchFavorites() {
